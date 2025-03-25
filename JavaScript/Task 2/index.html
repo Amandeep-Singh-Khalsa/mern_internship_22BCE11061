@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alphabetical Order</title>
+  </head>
+  <body style="background-color: rgb(108, 241, 93); text-align: center">
+    <div
+      style="
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: aqua;
+        padding: 20px;
+        border-radius: 10px;
+      "
+    >
+      <p style="font-size: 30px; font-weight: bold">Alphabetical Order</p>
+      <input
+        type="text"
+        id="textInput"
+        placeholder="Enter a word"
+        style="padding: 10px; font-size: 16px; text-align: center"
+      />
+      <button
+        onclick="sortAlphabetically()"
+        style="
+          margin-top: 10px;
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+          border: none;
+          background-color: black;
+          color: white;
+          border-radius: 5px;
+        "
+      >
+        Sort
+      </button>
+      <p id="result" style="margin-top: 20px; font-size: 20px; font-weight: bold"></p>
+    </div>
+
+    <script>
+      function alphaFunc(str) {
+        let map = new Map();
+        for (let i = 0; i < str.length; i++) {
+          map.set(i, str.charCodeAt(i));
+        }
+        let sortedMap = new Map([...map.entries()].sort(([, a], [, b]) => a - b));
+        return [...sortedMap.values()].reduce((acc, value) => acc + String.fromCharCode(value), "");
+      }
+
+      function otherAlphaFun(str) {
+        return str.split("").sort().join("");
+      }
+
+      function sortAlphabetically() {
+        let userInput = document.getElementById("textInput").value.trim();
+
+        if (userInput !== "") {
+          let sortedText = alphaFunc(userInput);
+          document.getElementById("result").innerText = `Sorted: ${sortedText}`;
+          console.log(`Input: ${userInput}`);
+          console.log(`Sorted Output (Method 1): ${sortedText}`);
+          console.log(`Sorted Output (Method 2): ${otherAlphaFun(userInput)}`);
+        } else {
+          document.getElementById("result").innerText = "Invalid input! Please enter a valid word.";
+          console.log("Invalid input! Please enter a valid word.");
+        }
+      }
+    </script>
+  </body>
+</html>

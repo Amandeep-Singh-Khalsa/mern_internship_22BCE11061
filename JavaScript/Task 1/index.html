@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse a Number</title>
+  </head>
+  <body style="background-color: rgb(108, 241, 93); text-align: center">
+    <div
+      style="
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: aqua;
+        padding: 20px;
+        border-radius: 10px;
+      "
+    >
+      <p style="font-size: 30px; font-weight: bold">Reverse A Number</p>
+      <input
+        type="text"
+        id="numberInput"
+        placeholder="Enter a number"
+        style="padding: 10px; font-size: 16px; text-align: center"
+      />
+      <button
+        onclick="reverseNumber()"
+        style="
+          margin-top: 10px;
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+          border: none;
+          background-color: black;
+          color: white;
+          border-radius: 5px;
+        "
+      >
+        Reverse
+      </button>
+      <p id="result" style="margin-top: 20px; font-size: 20px; font-weight: bold"></p>
+    </div>
+
+    <script>
+      function reverseNumber() {
+        let userInput = document.getElementById("numberInput").value.trim();
+
+        if (!isNaN(userInput) && userInput !== "") {
+          let reversedStr = String(userInput).split("").reverse().join("");
+          let reversedNum = Number(reversedStr);
+          document.getElementById("result").innerText = `Reversed: ${reversedNum}`;
+          console.log(`Input: ${userInput}`);
+          console.log(`Reversed Output: ${reversedNum}`);
+        } else {
+          document.getElementById("result").innerText = "Invalid input! Please enter a valid number.";
+          console.log("Invalid input! Please enter a valid number.");
+        }
+      }
+    </script>
+  </body>
+</html>
